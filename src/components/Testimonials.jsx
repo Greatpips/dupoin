@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Quote, Star, ArrowRight } from 'lucide-react';
 
-const Testimonials = ({ onAction }) => { // 1. Accept the global trigger prop
+const Testimonials = ({ onAction }) => {
   const [selected, setSelected] = useState(null);
 
   const testimonials = [
@@ -46,38 +46,38 @@ const Testimonials = ({ onAction }) => { // 1. Accept the global trigger prop
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section id="testimonial" className="py-24 bg-[#060b13] relative overflow-hidden">
+    <section id="testimonial" className="py-20 md:py-28 lg:py-32 bg-[#060b13] relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00d1ff]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-[1440px] mx-auto px-6">
-        <div className="text-center mb-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="text-center mb-16 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-8 text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
           >
             The <span className="text-[#00d1ff]">Community</span> Speaks
           </motion.h2>
           
           <motion.button 
-            onClick={onAction} // 2. Connected to the global form trigger
+            onClick={onAction}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative px-10 py-4 bg-[#00d1ff] text-black font-bold rounded-full transition-all flex items-center gap-2 mx-auto shadow-[0_0_20px_rgba(0,209,255,0.3)]"
+            className="group relative px-8 md:px-10 py-4 bg-[#00d1ff] text-black font-bold rounded-full flex items-center gap-2 mx-auto shadow-[0_0_20px_rgba(0,209,255,0.3)] active:scale-95"
           >
             <span>Register Now</span>
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </div>
 
-        {/* Slower Infinite Loop */}
-        <div className="relative flex overflow-hidden py-10 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+        {/* Infinite Scrolling Marquee */}
+        <div className="relative flex overflow-hidden py-8 md:py-12 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <motion.div 
-            className="flex gap-6"
+            className="flex gap-4 md:gap-6"
             animate={{ x: ["0%", "-33.33%"] }}
             transition={{ 
-              duration: 50, 
+              duration: 45, 
               ease: "linear", 
               repeat: Infinity 
             }}
@@ -86,15 +86,24 @@ const Testimonials = ({ onAction }) => { // 1. Accept the global trigger prop
               <div
                 key={idx}
                 onClick={() => setSelected(item)}
-                className={`flex-shrink-0 w-[380px] p-10 rounded-[3rem] bg-gradient-to-br ${item.color} to-transparent border border-white/5 backdrop-blur-md cursor-pointer hover:border-[#00d1ff]/40 transition-all duration-500 group relative`}
+                className={`flex-shrink-0 w-full max-w-[380px] sm:w-[360px] md:w-[380px] p-8 md:p-10 rounded-[3rem] 
+                  bg-gradient-to-br ${item.color} to-transparent border border-white/5 backdrop-blur-md 
+                  cursor-pointer hover:border-[#00d1ff]/40 transition-all duration-500 group relative`}
               >
                 <Quote className="absolute top-8 right-10 text-white/5 group-hover:text-[#00d1ff]/20 transition-colors" size={50} />
+                
                 <div className="flex items-center gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-[#00d1ff] text-[#00d1ff]" />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className="fill-[#00d1ff] text-[#00d1ff]" />
+                  ))}
                 </div>
-                <p className="text-gray-300 text-lg mb-10 leading-relaxed font-light">"{item.text}"</p>
+                
+                <p className="text-gray-300 text-[17px] leading-relaxed mb-10 font-light">
+                  "{item.text}"
+                </p>
+                
                 <div>
-                  <h4 className="text-white font-bold text-xl tracking-tight">{item.name}</h4>
+                  <h4 className="text-white font-bold text-xl">{item.name}</h4>
                   <p className="text-[#00d1ff] text-xs uppercase tracking-[0.2em] font-semibold mt-1">{item.role}</p>
                 </div>
               </div>
@@ -103,39 +112,43 @@ const Testimonials = ({ onAction }) => { // 1. Accept the global trigger prop
         </div>
       </div>
 
-      {/* Pop-up Modal */}
+      {/* Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl"
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
             onClick={() => setSelected(null)}
           >
             <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
+              initial={{ scale: 0.9, y: 30 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="max-w-2xl w-full bg-[#0a1019] border border-white/10 rounded-[3.5rem] p-12 md:p-20 relative"
+              exit={{ scale: 0.9, y: 30 }}
+              className="max-w-2xl w-full bg-[#0a1019] border border-white/10 rounded-[3rem] md:rounded-[3.5rem] p-8 md:p-16 lg:p-20 relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => setSelected(null)} className="absolute top-10 right-10 text-white/20 hover:text-white transition-colors">
-                <X size={32} />
+              <button 
+                onClick={() => setSelected(null)} 
+                className="absolute top-8 right-8 text-white/30 hover:text-white transition-colors"
+              >
+                <X size={36} />
               </button>
 
-              <Quote className="text-[#00d1ff] mb-10" size={60} />
-              <p className="text-2xl md:text-4xl text-white font-medium leading-snug mb-12">
+              <Quote className="text-[#00d1ff] mb-8 md:mb-10" size={60} />
+              
+              <p className="text-2xl md:text-3xl leading-tight text-white font-medium mb-12">
                 {selected.text}
               </p>
               
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#00d1ff] to-blue-600 flex items-center justify-center text-black font-black text-3xl">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-tr from-[#00d1ff] to-blue-600 flex items-center justify-center text-black font-black text-4xl">
                   {selected.name.charAt(0)}
                 </div>
                 <div>
                   <h4 className="text-2xl font-bold text-white">{selected.name}</h4>
-                  <p className="text-[#00d1ff] uppercase tracking-widest text-sm">{selected.role}</p>
+                  <p className="text-[#00d1ff] uppercase tracking-widest text-sm mt-1">{selected.role}</p>
                 </div>
               </div>
             </motion.div>

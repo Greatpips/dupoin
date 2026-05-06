@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 
-const FAQ = ({ onAction }) => { // 1. Accept the global trigger prop
+const FAQ = ({ onAction }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
@@ -29,58 +29,62 @@ const FAQ = ({ onAction }) => { // 1. Accept the global trigger prop
   ];
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-[#060b13] relative">
-      <div className="max-w-[900px] mx-auto px-6">
+    <section id="faq" className="py-20 md:py-28 lg:py-32 bg-[#060b13] relative">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold text-white mb-4"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
           >
             Common <span className="text-[#00d1ff]">Questions</span>
           </motion.h2>
-          <p className="text-gray-400">Everything you need to know about the future of trading.</p>
+          <p className="text-gray-400 text-lg max-w-md mx-auto">
+            Everything you need to know about the future of trading.
+          </p>
         </div>
 
-        {/* Accordion List */}
-        <div className="space-y-4">
+        {/* Accordion */}
+        <div className="space-y-4 md:space-y-5">
           {faqs.map((faq, index) => (
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.08 }}
               className="border border-white/5 rounded-[2rem] bg-white/[0.02] overflow-hidden"
             >
               <button 
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-white/[0.03] transition-colors"
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-white/[0.03] transition-colors group"
               >
-                <span className="text-lg md:text-xl font-semibold text-white pr-4">
+                <span className="text-lg md:text-xl font-semibold text-white pr-6 leading-tight">
                   {faq.question}
                 </span>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center transition-transform duration-300 ${activeIndex === index ? 'rotate-180 bg-[#00d1ff]' : ''}`}>
+                
+                <div className={`flex-shrink-0 w-9 h-9 rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 
+                  ${activeIndex === index ? 'rotate-180 bg-[#00d1ff]' : 'group-hover:border-[#00d1ff]/30'}`}>
                   {activeIndex === index ? (
-                    <Minus size={18} className="text-black" />
+                    <Minus size={20} className="text-black" />
                   ) : (
-                    <Plus size={18} className="text-white" />
+                    <Plus size={20} className="text-white" />
                   )}
                 </div>
               </button>
 
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {activeIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <div className="px-8 pb-8 text-gray-400 leading-relaxed text-lg border-t border-white/5 pt-4">
+                    <div className="px-6 md:px-8 pb-8 md:pb-10 text-gray-400 leading-relaxed text-[17px]">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -90,20 +94,22 @@ const FAQ = ({ onAction }) => { // 1. Accept the global trigger prop
           ))}
         </div>
 
-        {/* Final Register Button */}
+        {/* Final CTA */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
           className="mt-20 text-center"
         >
           <button 
-            onClick={onAction} // 2. Final trigger connected here
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-[#00d1ff] text-black font-black text-xl rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(0,209,255,0.2)]"
+            onClick={onAction}
+            className="group relative inline-flex items-center gap-3 px-10 md:px-12 py-5 bg-[#00d1ff] text-black font-bold text-lg md:text-xl rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(0,209,255,0.25)]"
           >
             Start Your Journey
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
           </button>
+          
           <p className="mt-6 text-gray-500 text-sm tracking-widest uppercase">
             Limited slots available for the next session
           </p>
