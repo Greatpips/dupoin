@@ -38,7 +38,7 @@ const Hero = ({ onAction }) => {
           className="max-w-3xl text-center md:text-left"
         >
           <h1 className="text-[32px] sm:text-[44px] leading-[1.2] md:text-6xl lg:text-7xl font-bold mb-6 italic tracking-tighter">
-            All-in-one <span className="text-[#00d1ff]">Automated</span> trading
+            All-in-one <span className="text-[#00d1ff]">Automated</span> trading solution
           </h1>
 
           <motion.p

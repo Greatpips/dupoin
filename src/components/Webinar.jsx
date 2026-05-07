@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react'; 
+import { X, Play } from 'lucide-react'; 
 
 import web1 from '../assets/web1.jpeg';
 import web2 from '../assets/web2.jpeg';
@@ -13,34 +13,51 @@ import webvid3 from '../assets/webvid3.mp4';
 
 const Webinar = () => {
   const [selectedImg, setSelectedImg] = useState(null);
+  const [hoveredVideo, setHoveredVideo] = useState(null);
+  const videoRefs = useRef({});
 
   const mediaItems = [
-    { type: 'video', src: webvid1 },
-    { type: 'video', src: webvid2 },
-    { type: 'video', src: webvid3 },
-    { type: 'image', src: web1 },
-    { type: 'image', src: web2 },
-    { type: 'image', src: web3 },
-    { type: 'image', src: web4 },
-    { type: 'image', src: web5 },
+    { type: 'video', src: webvid1, title: "AI Strategy Masterclass", duration: "42:18" },
+    { type: 'video', src: webvid2, title: "Live Trade Breakdown", duration: "28:45" },
+    { type: 'video', src: webvid3, title: "Risk Management Deep Dive", duration: "51:09" },
+    { type: 'image', src: web1, title: "Market Psychology" },
+    { type: 'image', src: web2, title: "Liquidity Engineering" },
+    { type: 'image', src: web3, title: "Backtesting Secrets" },
+    { type: 'image', src: web4, title: "AI Execution Framework" },
+    { type: 'image', src: web5, title: "Institutional Setups" },
   ];
+
+  const handleVideoHover = (index, isEntering) => {
+    const video = videoRefs.current[index];
+    if (!video) return;
+
+    if (isEntering) {
+      setHoveredVideo(index);
+      video.play().catch(() => {});
+    } else {
+      setHoveredVideo(null);
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
 
   return (
     <section id="webinar" className="py-20 md:py-28 lg:py-32 bg-[#060b13] border-t border-white/5 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
-        <div className="mb-12 md:mb-16">
+        <div className="mb-12 md:mb-16 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center md:text-left"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
           >
             The <span className="text-[#00d1ff]">Knowledge</span> Hub
           </motion.h2>
+          <p className="text-gray-400 text-lg">Watch. Learn. Dominate.</p>
         </div>
 
-        {/* Responsive Grid */}
+        {/* Compact Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {mediaItems.map((item, index) => {
             const isVideo = item.type === 'video';
@@ -48,74 +65,98 @@ const Webinar = () => {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: index * 0.08 }}
-                whileHover={{ y: -8 }}
+                transition={{ duration: 0.9, delay: index * 0.05 }}
+                whileHover={{ y: -6, scale: 1.02 }}
                 onClick={() => !isVideo && setSelectedImg(item.src)}
-                className={`relative aspect-[4/3.1] sm:aspect-[16/13] lg:aspect-[4/3.2] overflow-hidden rounded-[2rem] border border-white/10 bg-black group 
-                  ${!isVideo ? 'cursor-pointer active:scale-[0.985]' : 'cursor-default'}
-                `}
+                onMouseEnter={() => isVideo && handleVideoHover(index, true)}
+                onMouseLeave={() => isVideo && handleVideoHover(index, false)}
+                className="relative aspect-[16/13] sm:aspect-[16/12] overflow-hidden rounded-3xl border border-white/10 bg-black group cursor-pointer"
               >
                 {isVideo ? (
                   <video 
-                    src={item.src} 
-                    autoPlay 
-                    muted 
-                    loop 
+                    ref={el => videoRefs.current[index] = el}
+                    src={item.src}
+                    muted
+                    loop
                     playsInline
                     preload="metadata"
-                    className="w-full h-full object-cover object-center opacity-80"
+                    className="w-full h-full object-cover"
                   />
                 ) : (
                   <img 
                     src={item.src} 
-                    alt="Webinar Content" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                 )}
 
-                {/* Overlay Label */}
-                <div className="absolute top-5 right-5 flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
-                  <div className={`w-1.5 h-1.5 rounded-full ${isVideo ? 'bg-[#00d1ff] animate-pulse' : 'bg-white/30'}`} />
-                  <span className="text-[10px] text-white/90 font-bold uppercase tracking-widest">
-                    {isVideo ? 'VIDEO' : 'IMAGE'}
-                  </span>
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:via-black/40 transition-all duration-500" />
+
+                {/* Bottom Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                  <div className="flex items-center justify-between">
+                    {isVideo ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                        <span className="text-xs font-bold text-red-400 tracking-widest">VIDEO</span>
+                      </div>
+                    ) : (
+                      <span className="text-xs font-bold text-white/70 tracking-widest">IMAGE</span>
+                    )}
+                    
+                    {item.duration && (
+                      <span className="text-xs font-mono text-white/60">{item.duration}</span>
+                    )}
+                  </div>
+
+                  <h3 className="text-white text-lg md:text-xl font-semibold leading-tight mt-2 line-clamp-2">
+                    {item.title}
+                  </h3>
                 </div>
 
-                {/* Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Play Button Overlay */}
+                {isVideo && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className={`w-14 h-14 rounded-2xl border border-white/60 flex items-center justify-center backdrop-blur-md transition-all duration-300
+                      ${hoveredVideo === index ? 'opacity-0 scale-75' : 'opacity-100 scale-100'}`}>
+                      <Play size={28} className="text-white ml-0.5" />
+                    </div>
+                  </div>
+                )}
               </motion.div>
             );
           })}
         </div>
       </div>
 
-      {/* Lightbox - Improved for Mobile */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImg && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-3 md:p-8"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4"
             onClick={() => setSelectedImg(null)}
           >
             <motion.button 
-              className="absolute top-6 right-6 z-10 text-white/60 hover:text-white p-3"
+              className="absolute top-6 right-6 z-10 text-white/70 hover:text-white p-4"
               onClick={() => setSelectedImg(null)}
             >
-              <X size={36} />
+              <X size={40} />
             </motion.button>
 
             <motion.img 
-              initial={{ scale: 0.92, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               src={selectedImg} 
-              className="max-w-full max-h-[92vh] md:max-h-[94vh] object-contain rounded-2xl shadow-2xl"
+              className="max-w-full max-h-[92vh] object-contain rounded-3xl"
               onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>
