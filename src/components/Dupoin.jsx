@@ -140,15 +140,13 @@ const Dupoin = ({ onAction }) => {
             onClick={onAction}
             className="group relative flex items-center gap-4 px-10 md:px-12 py-5 rounded-full bg-[#00d1ff] text-black font-bold text-lg md:text-xl uppercase tracking-widest overflow-hidden hover:shadow-[0_0_50px_rgba(0,209,255,0.3)] active:scale-95 transition-all"
           >
-            <span className="relative z-10">Trade with Dupoin</span>
+            <span className="relative z-10">Get Started</span>
             <ArrowRight className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" size={24} strokeWidth={3} />
             
             <div className="absolute inset-0 bg-[#00a3cc] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
           </button>
           
-          <p className="text-gray-500 text-xs uppercase tracking-[0.4em] font-bold text-center">
-            Official Partnership Execution
-          </p>
+          
         </motion.div>
 
       </div>

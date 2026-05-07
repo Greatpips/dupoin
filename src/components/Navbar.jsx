@@ -84,7 +84,7 @@ const Navbar = ({ onAction }) => { // 1. Added onAction prop
             whileTap={{ scale: 0.95 }}
             className="bg-[#00d1ff] text-black px-8 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition-all"
           >
-            Register Now
+            Get Started
             <ChevronRight size={16} strokeWidth={3} />
           </motion.button>
         </div>
@@ -125,7 +125,7 @@ const Navbar = ({ onAction }) => { // 1. Added onAction prop
                 }}
                 className="bg-[#00d1ff] text-black w-full py-5 rounded-2xl font-bold text-xl mt-4 active:scale-95 transition-transform"
               >
-                Register Now
+                Get Started
               </button>
             </div>
           </motion.div>

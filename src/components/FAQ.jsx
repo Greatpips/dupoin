@@ -7,24 +7,24 @@ const FAQ = ({ onAction }) => {
 
   const faqs = [
     {
-      question: "How does the AI handle market volatility?",
-      answer: "The system uses real-time liquidity analysis to detect high-impact news events and volatility spikes. It automatically adjusts risk parameters or pauses trading to protect your capital during 'black swan' events."
+      question: "Do i need prior knowledge?",
+      answer: " No we will train you till you are competent to start trading"
     },
     {
-      question: "Do I need prior trading experience?",
-      answer: "Not at all. While the AI is built on professional-grade logic, the interface is designed for simplicity. We provide a step-by-step 'plug-and-play' setup that gets you running in under 10 minutes."
+      question: "What if i am too busy to Trade?",
+      answer: "We have automated solutions you can choose from to help you still achieve success in trading."
     },
     {
-      question: "What is the average risk-to-reward ratio?",
-      answer: "Our core strategy targets a minimum of 1:2 or 1:3 RR. The AI is programmed to cut losses early and let winning trades run using a proprietary trailing stop-loss algorithm."
+      question: "What is the risk involved in trading with you?",
+      answer: "we are a  multi-regulated and multi-award winning broker which means all your trading activities are safe and confidential and our system and training are set to help you manage the risk of trading properly without any issues."
     },
     {
-      question: "Can I use the AI on multiple accounts?",
-      answer: "Yes, our 'Pro' and 'Enterprise' tiers allow you to link multiple MT4/MT5 or C-Trader accounts simultaneously, with synchronized execution across all of them."
+      question: "how can i verify my account?",
+      answer: "just use any valid ID or speak to your account specialist to assist you"
     },
     {
-      question: "Is my capital safe with the AI?",
-      answer: "The AI never has direct access to withdraw your funds. It only executes trades via API on your chosen brokerage. You maintain 100% control over your capital at all times."
+      question: "How much can i start with?",
+      answer: "As low as 10 USD which is 13,000 naira."
     }
   ];
 
@@ -43,7 +43,7 @@ const FAQ = ({ onAction }) => {
             Common <span className="text-[#00d1ff]">Questions</span>
           </motion.h2>
           <p className="text-gray-400 text-lg max-w-md mx-auto">
-            Everything you need to know about the future of trading.
+            Everything you need to know before getting started
           </p>
         </div>
 
@@ -106,7 +106,7 @@ const FAQ = ({ onAction }) => {
             onClick={onAction}
             className="group relative inline-flex items-center gap-3 px-10 md:px-12 py-5 bg-[#00d1ff] text-black font-bold text-lg md:text-xl rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(0,209,255,0.25)]"
           >
-            Start Your Journey
+            Get Started
             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
           </button>
           

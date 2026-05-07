@@ -58,7 +58,7 @@ const Hero = ({ onAction }) => {
             transition={{ duration: 1, delay: 1.5 }}
             className="group relative inline-flex items-center gap-2 sm:gap-3 bg-[#00d1ff] text-black px-7 py-3.5 sm:px-10 sm:py-4 rounded-full font-black uppercase tracking-widest text-sm sm:text-base md:text-lg overflow-hidden transition-all shadow-[0_0_30px_rgba(0,209,255,0.3)] active:scale-95"
           >
-            <span className="relative z-10">Register Now</span>
+            <span className="relative z-10">Get Started</span>
             <motion.div
               variants={{ hover: { x: 8 } }}
               transition={{ duration: 0.4, ease: "easeOut" }}

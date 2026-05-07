@@ -45,7 +45,7 @@ const Footer = ({ onAction }) => {
               whileTap={{ scale: 0.95 }}
               className="group relative px-10 md:px-12 py-5 md:py-6 bg-[#00d1ff] text-black font-black text-xl md:text-2xl rounded-full overflow-hidden flex items-center gap-3 md:gap-4 mx-auto active:scale-95"
             >
-              <span>SECURE YOUR SPOT</span>
+              <span>Get Started Now </span>
               <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
             </motion.button>
           </motion.div>

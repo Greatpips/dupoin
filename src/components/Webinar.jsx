@@ -52,9 +52,9 @@ const Webinar = () => {
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
           >
-            The <span className="text-[#00d1ff]">Knowledge</span> Hub
+            Past Event <span className="text-[#00d1ff]"> and Training  </span> Sessions
           </motion.h2>
-          <p className="text-gray-400 text-lg">Watch. Learn. Dominate.</p>
+          <p className="text-gray-400 text-lg">Watch. Learn. And Get Started</p>
         </div>
 
         {/* Compact Grid */}
