@@ -42,7 +42,7 @@ const Webinar = () => {
   };
 
   return (
-    <section id="webinar" className="py-20 md:py-28 lg:py-32 bg-[#060b13] border-t border-white/5 overflow-hidden">
+    <section id="webinar" className="py-10 md:py-14 lg:py-16 bg-[#060b13] border-t border-white/5 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
         <div className="mb-12 md:mb-16 text-center">

@@ -28,7 +28,7 @@ const Dupoin = ({ onAction }) => {
   const slowTransition = { duration: 1.8, ease: [0.22, 1, 0.36, 1] };
 
   return (
-    <section id="dupoin" className="py-20 md:py-28 lg:py-32 bg-[#060b13] overflow-hidden">
+    <section id="dupoin" className="py-10 md:py-14 lg:py-16 bg-[#060b13] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
         {/* Brand Intro */}

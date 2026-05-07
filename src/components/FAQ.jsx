@@ -29,7 +29,7 @@ const FAQ = ({ onAction }) => {
   ];
 
   return (
-    <section id="faq" className="py-20 md:py-28 lg:py-32 bg-[#060b13] relative">
+    <section id="faq" className="py-10 md:py-14 lg:py-16 bg-[#060b13] relative">
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
         {/* Section Header */}

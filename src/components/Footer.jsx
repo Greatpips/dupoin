@@ -5,7 +5,7 @@ import dupLogo from '../assets/dup.svg';
 
 const Footer = ({ onAction }) => {
   return (
-    <footer className="relative bg-[#060b13] pt-16 md:pt-20 pb-12 overflow-hidden">
+    <footer className="relative bg-[#060b13] pt-10 md:pt-15 pb-10 overflow-hidden">
       
       {/* Background Effects */}
       <div 
