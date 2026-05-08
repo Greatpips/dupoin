@@ -9,6 +9,7 @@ import FAQ from './components/FAQ';
 import Dupoin from './components/Dupoin';
 import Footer from './components/Footer';
 import FormModal from './components/FormModal';
+import PopUp from './components/PopUp';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
         <Testimonials onAction={toggleModal} />
         <FAQ onAction={toggleModal} />
         <Dupoin onAction={toggleModal} />
+        <PopUp />
       </main>
 
       <Footer onAction={toggleModal} />

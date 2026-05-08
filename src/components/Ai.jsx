@@ -95,8 +95,8 @@ const Ai = () => {
             </div>
 
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1]">
-              Engineered for <br />
-              <span className="text-[#00d1ff]">Consistent Growth</span>
+              Our AUTOMATED  <br />
+              <span className="text-[#00d1ff]">TRADING SYSTEM</span>
             </h2>
 
             <div className="relative p-6 md:p-8 rounded-2xl bg-white/[0.01] border border-white/5 backdrop-blur-sm mb-8 overflow-hidden group">
@@ -109,7 +109,7 @@ const Ai = () => {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-6 mb-10">
-              <StatCounter value="300" suffix="%" label="Historical Return" started={isInView} />
+              <StatCounter value="300" suffix="%" label="profit return" started={isInView} />
               <StatCounter value="700" suffix="+" label="Connected Accounts" started={isInView} />
             </div>
 
