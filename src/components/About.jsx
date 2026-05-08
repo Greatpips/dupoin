@@ -267,6 +267,9 @@ const About = ({ onAction }) => {
 
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 bg-black">
 
+              {/* Masking overlay to cover Channel Name/Icon at top */}
+              <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
               {/* YouTube Player */}
               <div
                 ref={iframeRef}
