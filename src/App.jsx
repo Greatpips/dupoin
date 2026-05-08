@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Ai from './components/Ai';
 import Webinar from './components/Webinar';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -22,6 +23,7 @@ function App() {
       <main>
         <Hero onAction={toggleModal} />
         <About onAction={toggleModal} /> {/* Added trigger here */}
+        <Ai />
         <Webinar onAction={toggleModal} />
         <Testimonials onAction={toggleModal} />
         <FAQ onAction={toggleModal} />
