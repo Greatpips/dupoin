@@ -3,12 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Loader2, Send, User, Mail, Phone, AlertCircle } from 'lucide-react';
 
 const FormModal = ({ isOpen, onClose }) => {
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [status, setStatus] = useState('idle');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const nameInputRef = useRef(null);
 
-  // ←←← PASTE YOUR GOOGLE WEB APP URL HERE
   const scriptURL = "https://script.google.com/macros/s/AKfycbyuGxb6IdVHoXZwfgHyPZN7Oy7tmEEVFiIfZsmGNRw-QgEFcJ0SKgOLMU0rPqqzTLAdZQ/exec";
 
   useEffect(() => {
@@ -34,9 +33,18 @@ const FormModal = ({ isOpen, onClose }) => {
         body: formDataToSubmit,
       });
 
-      // With no-cors we can't read response, so we simulate success
+      // Simulation delay for smooth UI transition
       setTimeout(() => {
         setStatus('success');
+        
+        /* ─── META PIXEL LEAD TRACKING ─── */
+        // This triggers the "Lead" event in your Meta Events Manager
+        if (window.fbq) {
+          window.fbq('track', 'Lead', {
+            content_name: 'Elite Access Form',
+            status: 'submitted'
+          });
+        }
       }, 1000);
 
     } catch (error) {
@@ -59,7 +67,6 @@ const FormModal = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-100 flex items-center justify-center p-4 overflow-y-auto">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -68,7 +75,6 @@ const FormModal = ({ isOpen, onClose }) => {
             className="fixed inset-0 bg-[#02040a]/90 backdrop-blur-md"
           />
 
-          {/* Modal */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -86,7 +92,6 @@ const FormModal = ({ isOpen, onClose }) => {
             </button>
 
             <div className="p-8 md:p-12">
-              {/* Idle State - Form */}
               {status === 'idle' && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <div className="mb-10">
@@ -137,7 +142,6 @@ const FormModal = ({ isOpen, onClose }) => {
                 </motion.div>
               )}
 
-              {/* Loading State */}
               {status === 'loading' && (
                 <div className="py-20 flex flex-col items-center justify-center">
                   <div className="relative">
@@ -148,7 +152,6 @@ const FormModal = ({ isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Success State */}
               {status === 'success' && (
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="py-12 text-center">
                   <div className="w-20 h-20 bg-[#00d1ff]/10 rounded-full flex items-center justify-center mb-8 mx-auto border border-[#00d1ff]/20">
@@ -168,7 +171,6 @@ const FormModal = ({ isOpen, onClose }) => {
                 </motion.div>
               )}
 
-              {/* Error State */}
               {status === 'error' && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-12 text-center">
                   <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mb-8 mx-auto border border-red-500/20">
